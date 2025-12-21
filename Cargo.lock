@@ -228,7 +228,6 @@ dependencies = [
 [[package]]
 name = "arm_vcpu"
 version = "0.1.1"
-source = "git+https://github.com/arceos-hypervisor/arm_vcpu?branch=next#b24cc3635c049302ab8d58d3b54007bb5a053a96"
 dependencies = [
  "aarch64-cpu",
  "axaddrspace",
@@ -414,12 +413,13 @@ dependencies = [
 [[package]]
 name = "axdevice"
 version = "0.1.0"
-source = "git+https://github.com/arceos-hypervisor/axdevice.git#60558bb25214c2030651726beddae088d8a1cd8e"
+source = "git+https://github.com/DINGBROK423/axdevice.git?branch=virt-blk#ce1736db3f9b4fe7265f0485a62cbc94202f5822"
 dependencies = [
  "arm_vgic 0.1.0 (git+https://github.com/arceos-hypervisor/arm_vgic.git)",
  "axaddrspace",
  "axdevice_base",
- "axerrno 0.1.2",
+ "axerrno 0.2.2",
+ "axvirtio-blk",
  "axvmconfig",
  "cfg-if",
  "log",
@@ -1060,6 +1060,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "axvirtio-blk"
+version = "0.1.0"
+source = "git+https://github.com/DINGBROK423/AxVirtio-blk.git?branch=p1#24eada9ac439fb1ec75a036f81b13bd4c5e2af00"
+dependencies = [
+ "axaddrspace",
+ "axdevice_base",
+ "axerrno 0.2.2",
+ "axvmconfig",
+ "cfg-if",
+ "log",
+ "memory_addr",
+ "spin 0.9.8",
+]
+
+[[package]]
 name = "axvisor"
 version = "0.0.0"
 dependencies = [
@@ -1132,7 +1147,7 @@ dependencies = [
 [[package]]
 name = "axvm"
 version = "0.1.0"
-source = "git+https://github.com/arceos-hypervisor/axvm.git?branch=next#e161233e58c0ef0c6ec115ffa5b0d17dadd298be"
+source = "git+https://github.com/DINGBROK423/axvm.git?branch=virtio-blk#d432418aa10fa6971f585431a92550c92a62efa9"
 dependencies = [
  "arm_vcpu",
  "arm_vgic 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1157,9 +1172,9 @@ dependencies = [
 [[package]]
 name = "axvmconfig"
 version = "0.1.0"
-source = "git+https://github.com/arceos-hypervisor/axvmconfig.git?branch=next#5a8b64a47510b17da71e54cabbdf8c999ba2e2c9"
+source = "git+https://github.com/DINGBROK423/axvmconfig.git?branch=merge_add_virtio_mmio#dc1c2382c2cfe636d11fa768a014e83c647df222"
 dependencies = [
- "axerrno 0.1.2",
+ "axerrno 0.2.2",
  "clap",
  "enumerable",
  "env_logger",

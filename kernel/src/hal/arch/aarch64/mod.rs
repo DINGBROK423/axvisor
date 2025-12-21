@@ -127,8 +127,12 @@ pub fn hardware_check() {
     #[cfg(feature = "ept-level-4")]
     {
         if level < 4 {
-            panic!(
-                "4-level EPT feature is enabled, but the hardware only supports {}-level page tables. Please disable the 4-level EPT feature or use hardware that supports 4-level page tables.",
+            // panic!(
+            //     "4-level EPT feature is enabled, but the hardware only supports {}-level page tables. Please disable the 4-level EPT feature or use hardware that supports 4-level page tables.",
+            //     level
+            // );
+            warn!(  // <-- 改为 warn!
+                "The hardware supports {}-level page tables, but the 4-level EPT feature is not enabled. Using 3-level page tables.",
                 level
             );
         }
@@ -136,8 +140,12 @@ pub fn hardware_check() {
     #[cfg(not(feature = "ept-level-4"))]
     {
         if level > 3 {
-            panic!(
-                "The hardware supports {}-level page tables, but the 4-level EPT feature is not enabled. Please enable the 4-level EPT feature to utilize the hardware's full capabilities.",
+            // panic!(
+            //     "The hardware supports {}-level page tables, but the 4-level EPT feature is not enabled. Please enable the 4-level EPT feature to utilize the hardware's full capabilities.",
+            //     level
+            // );
+            warn!(  // <-- 改为 warn!
+                "The hardware supports {}-level page tables, but the 4-level EPT feature is not enabled. Using 3-level page tables.",
                 level
             );
         }

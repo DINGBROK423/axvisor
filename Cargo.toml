@@ -63,7 +63,7 @@ axhvc = {git = "https://github.com/arceos-hypervisor/axhvc.git"}
 axklib = {git = "https://github.com/arceos-hypervisor/axklib.git"}
 axruntime = {path = "modules/axruntime"}
 axvcpu = "0.1"
-axvm = {git = "https://github.com/arceos-hypervisor/axvm.git", branch = "next"}
+axvm = {git = "https://github.com/DINGBROK423/axvm.git", branch = "virtio-blk"}
 
 # System independent crates provided by ArceOS, these crates could be imported by remote url. 
 axerrno = "0.2"
@@ -79,18 +79,21 @@ rdrive = "0.18"
 
 vm-fdt = {git = "https://github.com/bullhh/vm-fdt.git", default-features = false, features = ["alloc"]}
 
-axdevice = {git = "https://github.com/arceos-hypervisor/axdevice.git"}
+axdevice = {git = "https://github.com/DINGBROK423/axdevice.git",branch = "virt-blk"}
 axdevice_base = "0.1"
 axvisor_api = "0.1"
 driver = {path = "modules/driver"}
 
 # platform
 axplat-x86-qemu-q35 = {path = "platform/x86-qemu-q35"}
-axvmconfig = {git = "https://github.com/arceos-hypervisor/axvmconfig.git", branch = "next"}
+axvmconfig = {git = "https://github.com/DINGBROK423/axvmconfig.git", branch = "merge_add_virtio_mmio"}
 
 [patch.crates-io]
 axvcpu = {git = "https://github.com/arceos-hypervisor/axvcpu.git", branch = "next"}
-axvmconfig = {git = "https://github.com/arceos-hypervisor/axvmconfig.git", branch = "next"}
+axvmconfig = {git = "https://github.com/DINGBROK423/axvmconfig.git", branch = "merge_add_virtio_mmio"}
+
+[patch."https://github.com/arceos-hypervisor/arm_vcpu"]
+arm_vcpu = {path = "crates/arm_vcpu"}
 
 [patch."https://github.com/arceos-org/arceos"]
 axconfig = {path = "modules/axconfig"}

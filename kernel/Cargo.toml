@@ -5,7 +5,7 @@ license.workspace = true
 name = "axvisor"
 
 [features]
-ept-level-4 = ["axaddrspace/4-level-ept"]
+# ept-level-4 = ["axaddrspace/4-level-ept"]
 fs = ["axstd/fs", "axruntime/fs"]
 dyn-plat = ["axstd/myplat", "axstd/driver-dyn", "axruntime/driver-dyn"]
 
