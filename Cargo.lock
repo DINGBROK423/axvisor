@@ -1062,7 +1062,6 @@ dependencies = [
 [[package]]
 name = "axvirtio-blk"
 version = "0.1.0"
-source = "git+https://github.com/DINGBROK423/AxVirtio-blk.git?branch=p1#24eada9ac439fb1ec75a036f81b13bd4c5e2af00"
 dependencies = [
  "axaddrspace",
  "axdevice_base",

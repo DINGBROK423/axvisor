@@ -98,3 +98,6 @@ arm_vcpu = {path = "crates/arm_vcpu"}
 [patch."https://github.com/arceos-org/arceos"]
 axconfig = {path = "modules/axconfig"}
 axruntime = {path = "modules/axruntime"}
+
+[patch."https://github.com/DINGBROK423/AxVirtio-blk.git"]
+axvirtio-blk = {path = "/workspaces/arceos/virt-blk/AxVirtio-blk"}
