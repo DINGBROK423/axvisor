@@ -537,25 +537,6 @@ fn vcpu_run() {
                         .unwrap();
                     }
                 }
-                AxVCpuExitReason::MmioRead { addr, width, reg, .. } => {
-                    match vm.get_devices().handle_mmio_read(addr, width) {
-                        Ok(val) => {
-                            if reg < 31 {
-                                vcpu.set_gpr(reg, val);
-                            }
-                        }
-                        Err(e) => {
-                            error!("MMIO Read error at {:#x}: {:?}", addr, e);
-                        }
-                    }
-                    // vcpu.get_arch_vcpu().advance_pc(); // Already advanced in arm_vcpu
-                }
-                AxVCpuExitReason::MmioWrite { addr, width, data } => {
-                    if let Err(e) = vm.get_devices().handle_mmio_write(addr, width, data as usize) {
-                        error!("MMIO Write error at {:#x}: {:?}", addr, e);
-                    }
-                    // vcpu.get_arch_vcpu().advance_pc(); // Already advanced in arm_vcpu
-                }
                 e => {
                     warn!("VM[{vm_id}] run VCpu[{vcpu_id}] unhandled vmexit: {e:?}");
                 }
