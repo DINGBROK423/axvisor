@@ -6,7 +6,7 @@ name = "axvisor"
 
 [features]
 # ept-level-4 = ["axaddrspace/4-level-ept"]
-fs = ["axstd/fs", "axruntime/fs"]
+fs = ["axstd/fs", "axruntime/fs", "axdevice/fs"]
 dyn-plat = ["axstd/myplat", "axstd/driver-dyn", "axruntime/driver-dyn"]
 
 [dependencies]

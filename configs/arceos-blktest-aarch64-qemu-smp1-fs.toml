@@ -1,0 +1,49 @@
+# Axvisor VM configuration for ArceOS blktest with File Backend
+# 使用文件系统作为 Virtio-blk 后端存储
+
+[base]
+id = 1
+name = "arceos-blktest-fs"
+vm_type = 1
+cpu_num = 1
+phys_cpu_ids = [0]
+
+[kernel]
+entry_point = 0x4000_0000
+image_location = "memory"
+kernel_path = "/workspaces/arceos/Axvisor/axvisor/tmp/guest-images/arceos-blktest-aarch64.bin"
+kernel_load_addr = 0x4000_0000
+dtb_load_addr = 0x4800_0000
+
+# Use 256MB of memory to avoid allocation failure.
+memory_regions = [
+  [0x4000_0000, 0x1000_0000, 0x7, 0],
+]
+
+[devices]
+passthrough_devices = []
+passthrough_addresses = [
+    [0x09000000, 0x1000],   # UART
+    [0x08000000, 0x10000],  # GICD
+    [0x080a0000, 0xf0000],  # GICR
+]
+excluded_devices = [
+    ["/pcie@10000000"],
+]
+emu_devices = []
+interrupt_mode = "passthrough"
+
+# Virtio block device with File Backend (AxVirtio-blk)
+# 使用 Axvisor 文件系统内的文件作为虚拟磁盘后端
+[[devices.virtio_blk_mmio]]
+device_id = "blk0"
+mmio_base = "0x0a000000"
+mmio_size = "0x200"
+interrupt_type = "spi"
+interrupt_number = 48
+guest_device_path = "/dev/vda"
+backend_type = "file"
+backend_path = "/guest-disk.img"
+size = "0x1000000"           # 16MB (matches the guest-disk.img size)
+readonly = false
+serial = "blktest-fs-disk0"

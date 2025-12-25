@@ -1,0 +1,13 @@
+# Axvisor 构建配置 - 启用文件系统后端
+# Build configuration for Axvisor with filesystem backend support
+
+cargo_args = []
+features = [
+    "axstd/bus-mmio",
+    "dyn-plat",
+    "fs",                    # 必须启用：文件系统支持
+]
+log = "Info"
+target = "aarch64-unknown-none-softfloat"
+to_bin = true
+vm_configs = []
